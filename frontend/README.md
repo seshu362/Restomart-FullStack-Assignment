@@ -1,70 +1,182 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Task Manager Application
 
-## Available Scripts
+## Project Overview
 
-In the project directory, you can run:
+Task Manager is a full-stack web application that allows users to manage their tasks efficiently. This application provides a simple and intuitive interface for creating, viewing, updating, and deleting tasks. Users can organize tasks by status (To Do, In Progress, Done) and set due dates for better task management.
 
-### `npm start`
+## Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Backend
+- **Node.js** - JavaScript runtime environment
+- **Express.js** - Web application framework
+- **SQLite** - Lightweight database
+- **sqlite3** - SQLite driver for Node.js
+- **CORS** - Cross-Origin Resource Sharing middleware
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Frontend
+- **React** - JavaScript library for building user interfaces
+- **React Router** - Routing library for React applications
+- **CSS3** - Styling with custom CSS modules
+- **Fetch API** - For making HTTP requests
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🚀 Installation & Setup
 
-### `npm run build`
+### Backend Setup
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+# Navigate to backend directory
+cd backend
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Install dependencies
+npm install
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Start the server
+node server.js
 
-### `npm run eject`
+The backend server will run on http://localhost:3001
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Frontend Setup
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+# Navigate to frontend directory
+cd frontend
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+# Install dependencies
+npm install
 
-## Learn More
+# Start the server
+npm server
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The frontend server will run on http://localhost:3000
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## API Endpoints
 
-### Code Splitting
+### Base URL: `http://localhost:3001`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+| Method | Endpoint       | Description                  |
+|--------|----------------|------------------------------|
+| GET    | `/tasks`       | Retrieve all tasks           |
+| GET    | `/tasks/:id`   | Retrieve a specific task by ID |
+| POST   | `/tasks`       | Create a new task            |
+| PUT    | `/tasks/:id`   | Update an existing task      |
+| DELETE | `/tasks/:id`   | Delete a task                |
 
-### Analyzing the Bundle Size
+## Request/Response Examples
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### POST `/tasks`
 
-### Making a Progressive Web App
+**Request Body:**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```json
+{
+  "title": "Complete project",
+  "description": "Finish the task manager application",
+  "status": "in_progress",
+  "dueDate": "2024-12-31"
+}
+```
 
-### Advanced Configuration
+### PUT `/tasks/:id`
+All fields are optional. Only send the fields you want to update.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+**Request Body:**
 
-### Deployment
+```json
+{
+  "title": "Updated title",
+  "description": "Updated description",
+  "status": "done",
+  "dueDate": "2024-12-25"
+}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```
 
-### `npm run build` fails to minify
+# Frontend Pages
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Home Page (`/` or `/home`)
+**Purpose:** Main dashboard displaying all tasks
+
+### Features:
+- List view of all tasks with their details
+- Filter tasks by status (All, To Do, In Progress, Done)
+- Quick actions to edit or delete tasks
+- Navigation button to add new tasks
+- Color-coded task cards based on status
+
+---
+
+## Add Task Page (`/add`)
+**Purpose:** Create new tasks
+
+### Features:
+- Form with fields for title, description, status, and due date
+- Client-side validation for required fields
+- Cancel button to return to home page
+- Success redirect to home page after task creation
+
+---
+
+## Edit Task Page (`/edit/:id`)
+**Purpose:** Update existing tasks
+
+### Features:
+- Pre-populated form with current task details
+- Same fields as Add Task page
+- Client-side validation
+- Cancel button to return without saving
+- Success redirect to home page after update
+
+---
+
+# Optional Features Implemented
+
+## 1. Responsive Design
+- Mobile-friendly layout that adapts to different screen sizes
+- Responsive navigation and form layouts
+- Touch-friendly buttons and controls
+
+## 2. Form Validation
+- Client-side validation for required fields (title and status)
+- Error messages displayed below invalid fields
+- Real-time error clearing when user corrects input
+- Disabled submit button during form submission
+
+## 3. Task Filtering
+- Filter tasks by status on the home page
+- Active filter state indication
+- Maintains filter selection during task operations
+- Shows appropriate message when no tasks match filter
+
+## 4. Visual Enhancements
+- Color-coded task cards based on status
+- Hover effects on interactive elements
+- Loading states during data fetching
+- Smooth transitions and animations
+
+## 5. User Experience Features
+- Confirmation dialog before deleting tasks
+- Loading indicators during API calls
+- Error handling with user-friendly messages
+
+---
+
+# Database Schema
+
+## Tasks Table
+
+```sql
+CREATE TABLE tasks (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    description TEXT,
+    status TEXT CHECK(status IN ('todo', 'in_progress', 'done')) NOT NULL,
+    dueDate TEXT,
+    createdAt TEXT DEFAULT CURRENT_TIMESTAMP,
+    updatedAt TEXT DEFAULT CURRENT_TIMESTAMP
+);
+```
