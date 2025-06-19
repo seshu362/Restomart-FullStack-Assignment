@@ -161,7 +161,6 @@ All fields are optional. Only send the fields you want to update.
 - Confirmation dialog before deleting tasks
 - Loading indicators during API calls
 - Error handling with user-friendly messages
-- Automatic timestamp management (`createdAt`, `updatedAt`)
 
 ---
 
